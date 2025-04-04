@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Z2N",
     description: "Powered by Gabriel Bino",
-    url: "https://inglesz2n.vercel.app",
     siteName: "Z2N",
     images: [
       {
@@ -30,9 +29,6 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
-  },
-  icons: {
-    icon: "/favicon.ico",
   },
 };
 
