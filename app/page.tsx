@@ -1,6 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import { useEffect, useState } from 'react';
 import SocialLinks from './components/links/socialLinks';
+import { FaShareAlt } from 'react-icons/fa';
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -11,21 +13,37 @@ export default function Home() {
     setShowForm(today >= cutoff);
   }, []);
 
-  const whatsappLink = 'https://chat.whatsapp.com/Fd8lt5l6huoGsxOEFjQLW9';
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Inglês do Zero às Nações',
+          text: 'Conheça este projeto gratuito de inglês com propósito. Compartilhe com alguém especial!',
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Erro ao compartilhar:', error);
+      }
+    } else {
+      alert('Compartilhamento não suportado neste dispositivo.');
+    }
+  };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 gap-10 text-center">
-      <h1 className="text-3xl font-bold">Inglês do Zero às Nações</h1>
-      <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-200">Projeto Gratuito</p>
-      <p className="text-neutral-900 dark:text-neutral-200 max-w-xl">
+    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-12 gap-10 bg-black text-center">
+      <h1 className="text-3xl font-bold tracking-wide text-white">
+        Inglês do Zero às Nações
+      </h1>
+      <p className="text-lg text-green-400 font-semibold">Projeto Gratuito</p>
+      <p className="text-gray-300 max-w-xl text-sm sm:text-base">
         Prática de fala, leitura, escrita e gramática com uma abordagem acessível e diária.
       </p>
 
-      <div className="w-full max-w-md bg-neutral-200 p-6 rounded-xl">
+      <div className="w-full max-w-md bg-neutral-100 p-6 rounded-xl shadow-lg">
         {showForm ? (
           <>
-            <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-200">As inscrições estão encerradas.</p>
-            <p className="text-sm text-neutral-900 dark:text-neutral-200 mt-2 mb-4">
+            <p className="text-lg font-semibold">Inscrições encerradas</p>
+            <p className="text-sm text-gray-600 mt-2 mb-4">
               Entre na lista de espera para a próxima edição:
             </p>
             <form className="flex gap-2">
@@ -37,7 +55,7 @@ export default function Home() {
               />
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
               >
                 Enviar
               </button>
@@ -45,24 +63,40 @@ export default function Home() {
           </>
         ) : (
           <>
-            <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-800">Participe da primeira edição!</p>
+            <p className="text-lg font-semibold text-gray-400">Participe da primeira edição!</p>
             <a
-              href={whatsappLink}
+              href="https://chat.whatsapp.com/Fd8lt5l6huoGsxOEFjQLW9"
               target="_blank"
               rel="noopener noreferrer"
-              className="block mt-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 shadow-md shadow-green-600/50"
+              className="block mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition shadow"
             >
               Entrar no grupo do WhatsApp
             </a>
-            <p className="text-sm font-semi-bold text-neutral-500 mt-2">Disponível até: 13 de abril de 2025</p>
+            <p className="text-sm text-gray-400 mt-2">Disponível até: 13 de abril de 2025</p>
           </>
         )}
       </div>
 
-      <footer className="text-sm text-nuetral-700 space-y-2">
-        <p className="font-semibold">Me siga nas redes sociais</p>
+      <div className="mt-6">
+        <p className="text-sm mb-2 text-white">
+          Isso pode mudar o futuro de alguém. Compartilhe!
+        </p>
+        <button
+          onClick={handleShare}
+          className="px-5 py-5 rounded-xl shadow-md bg-neutral-800 hover:bg-neutral-700 text-white hover:scale-105 transition-transform"
+        >
+          <FaShareAlt />
+        </button>
+      </div>
+
+      <div className="mt-10 text-white">
+        <p className="text-sm font-semibold mb-2">Me siga nas redes sociais</p>
         <SocialLinks />
-      </footer>
-    </div>
+      </div>
+
+      <p className="text-xs text-gray-500 mt-8">
+        Uma iniciativa Gabriel Bino © {new Date().getFullYear()}
+      </p>
+    </main>
   );
 }
