@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     const today = new Date();
-    const cutoff = new Date('2025-04-13');
+    const cutoff = new Date('2025-09-07');
     setShowForm(today >= cutoff);
   }, []);
 
@@ -32,14 +32,16 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 py-12 gap-10 bg-black text-center">
       <h1 className="text-3xl font-bold tracking-wide text-white">
-        Inglês do Zero às Nações
+        Inglês do Zero às Nações — Segunda Edição
       </h1>
-      <p className="text-lg text-green-400 font-semibold">Projeto Gratuito</p>
+      <p className="text-lg text-green-400 font-semibold">
+        Participe da lista de espera do projeto gratuito
+      </p>
       <p className="text-gray-300 max-w-xl text-sm sm:text-base">
-        Prática de fala, leitura, escrita e gramática com uma abordagem acessível e diária.
+        Uma jornada de prática diária com foco em fala, escuta, leitura e escrita.
       </p>
 
-      <div className="w-full max-w-md bg-neutral-100 p-6 rounded-xl shadow-lg">
+      <div className="w-full max-w-md bg-neutral-200 p-6 rounded-xl shadow-lg">
         {showForm ? (
           <>
             <p className="text-lg font-semibold">Inscrições encerradas</p>
@@ -63,16 +65,16 @@ export default function Home() {
           </>
         ) : (
           <>
-            <p className="text-lg font-semibold text-gray-400">Participe da primeira edição!</p>
+            <p className="text-lg font-semibold text-gray-600">Lista de espera da segunda edição!</p>
             <a
-              href="https://chat.whatsapp.com/Fd8lt5l6huoGsxOEFjQLW9"
+              href="https://chat.whatsapp.com/GowfnBwh8b45wNWWE1eZ93?mode=ac_c"
               target="_blank"
               rel="noopener noreferrer"
               className="block mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition shadow"
             >
-              Entrar no grupo do WhatsApp
+              Quero entrar na lista de espera
             </a>
-            <p className="text-sm text-gray-400 mt-2">Disponível até: 13 de abril de 2025</p>
+            <p className="text-sm text-gray-500 mt-2">Grupo disponível até: 07 de setembro de 2025</p>
           </>
         )}
       </div>
